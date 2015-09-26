@@ -1,0 +1,11 @@
+flags: {}
+packages:
+  - '.'
+  - location:
+      git: git@github.com:mpickering/slack-api.git
+      commit: 3da05b0729bc050e26a99ca5256723706f68d89f
+  - location:
+      git: git@github.com:Lepovirta/SonaattiMenu.git
+      commit: 95272bdbf4e77bbf2015d6d0a5e7dbd861b7f35a
+extra-deps: []
+resolver: lts-3.5
