@@ -1,3 +1,4 @@
+{-# LANGUAGE OverloadedStrings #-}
 module SlackBot.Command
     (runCommand) where
 
@@ -12,11 +13,22 @@ import SlackBot.Commands.Sonaatti as Sonaatti
 -- List containing all available commands
 -- Add new commands to this list.
 commands :: [Command]
-commands = [ Sonaatti.cmd ]
+commands = [ helpCmd
+           , Sonaatti.cmd
+           ]
 
 
 commandMap :: Map Text Command
 commandMap = M.fromList $ map (\ c -> (cName c,c)) commands
+
+-- Command for printing descriptions.
+helpCmd :: Command
+helpCmd =
+    let name = "help"
+        description = "Show this help text."
+        format = \ c -> T.concat ["!", cName c, ": ", cDesc c]
+        func = \ _ -> return (T.intercalate "\n" $ map format commands)
+    in Command name description func
 
 -- Parse command name and arguments from input.
 parseInput :: Text -> (Text,Text)

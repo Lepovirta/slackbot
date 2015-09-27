@@ -10,6 +10,9 @@ import qualified Data.Text as T
 name :: Text
 name = "s"
 
+description :: Text
+description = "Sonaatti restaurant menus. Example: `!s piato wilhemiina`."
+
 -- Format Menu list for slack.
 formatMenus :: [(Text,Text)] -> Text
 formatMenus =
@@ -24,4 +27,4 @@ func input = do
     return (formatMenus menus)
 
 cmd :: Command
-cmd = Command name func
+cmd = Command name description func
