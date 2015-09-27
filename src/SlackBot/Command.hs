@@ -26,8 +26,9 @@ helpCmd :: Command
 helpCmd =
     let name = "help"
         description = "Show this help text."
+        header = "Available commands:"
         format = \ c -> T.concat ["!", cName c, ": ", cDesc c]
-        func = \ _ -> return (T.intercalate "\n" $ map format commands)
+        func = \ _ -> return (T.intercalate "\n" $ header : map format commands)
     in Command name description func
 
 -- Parse command name and arguments from input.
