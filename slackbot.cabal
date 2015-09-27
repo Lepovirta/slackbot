@@ -2,7 +2,7 @@ name:                slackbot
 version:             0.1.0.0
 synopsis:            Simple project template from stack
 description:         Please see README.md
-homepage:            http://github.com/keveri/slackbot#readme
+homepage:            http://github.com/Lepovirta/slackbot#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Matias Keveri
