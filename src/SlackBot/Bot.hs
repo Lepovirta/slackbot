@@ -4,20 +4,19 @@ module SlackBot.Bot
 
 import Control.Monad.IO.Class (liftIO)
 import Data.Maybe (fromMaybe)
+import Data.Text (Text)
 import SlackBot.Command (runCommand)
+import SlackBot.Types
 import System.Environment (lookupEnv)
 import Web.Slack
 import Web.Slack.Message
+import qualified Data.Text as T
 
 -- Create SlackConfig for bot.
-botConfig :: String -> SlackConfig
-botConfig apiToken = SlackConfig
-    { _slackApiToken = apiToken
+slackConf :: Text -> SlackConfig
+slackConf apiToken = SlackConfig
+    { _slackApiToken = T.unpack apiToken
     }
-
--- Error for missing token.
-tokenError :: String
-tokenError = error "SLACK_API_TOKEN not set"
 
 -- SlackBot that handles commands starting with '!'.
 commandBot :: SlackBot ()
@@ -27,7 +26,7 @@ commandBot (Message cid _ msg _ _ _) = do
 commandBot _ = return ()
 
 -- Run bot.
-run :: IO ()
-run = do
-    apiToken <- fromMaybe tokenError <$> lookupEnv "SLACK_API_TOKEN"
-    runBot (botConfig apiToken) commandBot ()
+run :: BotConfig -> IO ()
+run conf = do
+    let apiToken = bToken conf
+    runBot (slackConf apiToken) commandBot ()
