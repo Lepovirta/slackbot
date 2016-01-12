@@ -1,3 +1,5 @@
+[![BSD3 License](https://img.shields.io/badge/license-BSD3-blue.svg?style=flat-square)](https://tldrlegal.com/license/bsd-3-clause-license-%28revised%29)
+
 # slackbot
 A bot for Slack. Easy way to add new commands for slack channels.
 
